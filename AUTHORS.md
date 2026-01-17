@@ -16,7 +16,7 @@
 - Business model conceptualization
 
 **Background:**
-- CEO/Founder (Brazil)
+- Founder of Brazilian business group
 - Experience in organizational systems and digital transformation
 - Focus on knowledge preservation and succession in family businesses
 
