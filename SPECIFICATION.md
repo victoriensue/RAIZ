@@ -1,14 +1,35 @@
 # RAIZ Protocol Specification
 
 **Version 1.0.0**
+
 **Date: January 17, 2026**
-**Status: Initial Release**
+
+**Author: Victor Iensue**
+
+---
+
+## Table of Contents
+
+1. Abstract
+2. Introduction
+3. Architecture
+4. Communication Protocol
+5. File Format Requirements
+6. Non-Revalidation Principle
+7. Interoperability
+8. Security Considerations
+9. Future Work
+10. References
+11. Changelog
+12. Author
 
 ---
 
 ## 1. Abstract
 
-This document specifies the RAIZ Protocol, an open standard for preserving and transferring human cognitive identity across artificial intelligence systems. RAIZ defines data structures, communication protocols, and interoperability requirements for creating portable digital identities (e-DNA) that maintain context and continuity independent of any single AI platform.
+RAIZ (from Portuguese "root") is an open protocol specification for preserving and porting human cognitive identity across artificial intelligence systems. This document defines the three-layer architecture, communication protocols, and file format requirements for RAIZ-compatible implementations.
+
+The protocol enables users to maintain continuity of context, preferences, and knowledge patterns when interacting with AI systems, regardless of the underlying platform or model.
 
 ---
 
@@ -16,25 +37,38 @@ This document specifies the RAIZ Protocol, an open standard for preserving and t
 
 ### 2.1 Purpose
 
-RAIZ enables humans to maintain persistent cognitive context when interacting with AI systems. Unlike platform-specific memory features, RAIZ creates a user-owned, portable identity that works across any compliant AI system.
+The purpose of this specification is to define a standardized method for:
+
+- Preserving human-AI interaction history
+- Extracting and maintaining cognitive identity patterns
+- Enabling portability of digital identity across AI platforms
+- Reducing computational overhead through semantic tokenization
 
 ### 2.2 Scope
 
 This specification covers:
-- Data structure requirements
-- File format standards
-- Communication protocol
+
+- Data structure and organization
+- File format requirements
+- Communication protocol between human and AI
 - Interoperability requirements
-- Implementation guidelines
+
+This specification does not cover:
+
+- Specific AI model implementations
+- User interface requirements
+- Network protocols for data transmission
 
 ### 2.3 Terminology
 
 | Term | Definition |
 |------|------------|
-| **e-DNA** | Electronic Digital Native Architecture — a structured representation of human cognitive patterns |
-| **RAIZ Repository** | Local file system containing the three-layer structure |
-| **Trigger** | Standardized command that initiates protocol actions |
-| **Session** | A single conversation between human and AI |
+| RAIZ | Root Architecture for Identity Zero-loss |
+| e-DNA | Electronic DNA - digital cognitive identity |
+| Timelapse | Chronological record layer |
+| Trigger | Command that initiates protocol action |
+| Session | Single conversation instance |
+| Context Window | AI's active memory during session |
 
 ---
 
@@ -42,158 +76,152 @@ This specification covers:
 
 ### 3.1 Three-Layer Structure
 
+RAIZ defines three distinct layers for organizing human-AI knowledge:
 ```
-RAIZ/
-│
-├── ACTIVE_CONTEXT.md      # Current state pointer
-├── ARCHITECTURE.md        # System documentation
-│
-├── 01_DATES/              # Layer 1: Timelapse
-│   └── YYYY/MM/DD.md      # Daily records
-│
-├── 02_eDNA/               # Layer 2: Digital Identity
-│   ├── personality/       # Behavioral traits
-│   ├── reasoning/         # Created concepts
-│   └── patterns/          # Decision patterns
-│
-└── 03_PROJECTS/           # Layer 3: Application
-    └── [project_name]/    # Project-specific context
-        └── README.md      # Project state
+┌─────────────────────────────────────────────┐
+│           LAYER 1: DATES (Timelapse)        │
+│                                             │
+│  - Raw chronological records                │
+│  - Immutable conversation logs              │
+│  - Timestamp-based organization             │
+│  - Format: YYYY-MM-DD_topic.md              │
+└─────────────────────────────────────────────┘
+                      │
+                      ▼ (extraction)
+┌─────────────────────────────────────────────┐
+│        LAYER 2: e-DNA (Digital Identity)    │
+│                                             │
+│  - Behavioral patterns                      │
+│  - Communication preferences                │
+│  - Decision-making styles                   │
+│  - Knowledge domain mappings                │
+│  - Values and priorities                    │
+└─────────────────────────────────────────────┘
+                      │
+                      ▼ (application)
+┌─────────────────────────────────────────────┐
+│        LAYER 3: PROJECTS (Application)      │
+│                                             │
+│  - Context-specific knowledge               │
+│  - Active project documentation             │
+│  - Domain-specific rules                    │
+│  - Temporary working memory                 │
+└─────────────────────────────────────────────┘
 ```
 
 ### 3.2 Layer 1: DATES (Timelapse)
 
 **Purpose:** Immutable chronological record of all interactions.
 
-**Rules:**
-- One file per day: `YYYY/MM/DD.md`
-- Content is raw, unedited conversation summaries
-- Files are append-only after creation
-- Serves as source of truth
+**Requirements:**
+- Files MUST be named with ISO date format: `YYYY-MM-DD_description.md`
+- Content MUST NOT be modified after session completion
+- Each file represents one session or logical unit
+- Files MUST be stored in `01_DATAS/` directory
 
-**Format:**
-```markdown
-# Session Record — YYYY-MM-DD
-
-## Session 1 (HH:MM - HH:MM)
-### Topics Covered
-- [topic 1]
-- [topic 2]
-
-### Decisions Made
-- [decision 1]
-
-### Key Outputs
-- [output 1]
-
----
+**Example structure:**
+```
+01_DATAS/
+├── 2026-01-15_initial_setup.md
+├── 2026-01-16_business_planning.md
+└── 2026-01-17_protocol_development.md
 ```
 
 ### 3.3 Layer 2: e-DNA (Digital Identity)
 
 **Purpose:** Extracted patterns that define the user's cognitive identity.
 
-**Subdirectories:**
+**Requirements:**
+- Files organized by category in `02_eDNA/` directory
+- Content is refined over time (mutable)
+- Represents validated, stable patterns
+- MUST include at minimum: personality profile, communication style
 
-| Directory | Content |
-|-----------|---------|
-| `personality/` | Communication style, preferences, behavioral traits |
-| `reasoning/` | Original concepts created by user |
-| `patterns/` | Recurring decision patterns |
-
-**Personality File Format:**
-```markdown
-# User Profile: [Name]
-
-## Communication Style
-- [trait 1]
-- [trait 2]
-
-## Thinking Patterns
-- [pattern 1]
-- [pattern 2]
-
-## Decision Patterns
-- [pattern 1]
-
-## Technical Level
-- [description]
-
-## Created Concepts
-### [Concept Name] (Date)
-[Brief description]
-File: `reasoning/[number]_[name].md`
+**Required subdirectories:**
+```
+02_eDNA/
+├── personalidade/     # Personality traits
+├── comunicacao/       # Communication patterns
+├── decisao/          # Decision-making patterns
+├── conhecimento/     # Knowledge domains
+└── valores/          # Values and priorities
 ```
 
-### 3.4 Layer 3: PROJECTS
+### 3.4 Layer 3: PROJECTS (Application)
 
-**Purpose:** Context-specific knowledge for active work areas.
+**Purpose:** Context-specific knowledge for active work.
 
-**Structure:**
+**Requirements:**
+- Organized by project in `03_PROJETOS/` directory
+- Contains working documentation
+- May reference e-DNA and DATES layers
+- Follows project-specific organization
+
+**Example structure:**
 ```
-03_PROJECTS/
-└── [PROJECT_NAME]/
-    ├── README.md       # Project status and context
-    ├── decisions.md    # Key decisions made
-    └── outputs/        # Generated artifacts
-```
-
-**README Format:**
-```markdown
-# Project: [Name]
-
-## Status
-[Current state]
-
-## Objective
-[What we're trying to achieve]
-
-## Context
-[Relevant background]
-
-## Pending
-- [ ] Task 1
-- [ ] Task 2
-
-## Related Documents
-- [link 1]
+03_PROJETOS/
+├── PROJECT_A/
+│   ├── README.md
+│   ├── requirements.md
+│   └── progress.md
+└── PROJECT_B/
+    └── ...
 ```
 
 ---
 
 ## 4. Communication Protocol
 
-### 4.1 Session Start Trigger
+### 4.1 Trigger Commands
 
-**Command:** "Good morning [AI_NAME]" (or localized equivalent)
+RAIZ defines specific trigger phrases that initiate protocol actions:
 
-**AI Actions:**
-1. Read `ACTIVE_CONTEXT.md`
-2. Read primary e-DNA file (`02_eDNA/personality/[user].md`)
-3. Identify active project from context
-4. Read project README if applicable
-5. Check last DATES entry for continuity
-6. Respond with context summary
-7. Ask: "Continue where we left off or start something new?"
+| Trigger (EN) | Trigger (PT) | Action |
+|--------------|--------------|--------|
+| "Good morning Claude" | "Bom dia Claudio" | Initialize session, load full RAIZ context |
+| "Goodbye Claude" | "Tchau Claudio" | Save session, update DATES, sync e-DNA |
 
-### 4.2 Session End Trigger
+### 4.2 Session Initialization
 
-**Command:** "Goodbye [AI_NAME]" (or localized equivalent)
+When initialization trigger is detected, AI MUST:
 
-**AI Actions:**
-1. Create/update `01_DATES/YYYY/MM/DD.md` with session summary
-2. If new pattern identified → add to `02_eDNA/`
-3. If worked on project → update `03_PROJECTS/[name]/README.md`
-4. Update `ACTIVE_CONTEXT.md` with final state
-5. Respond: "Saved! [summary]. You can safely close this conversation."
+1. Read `CONTEXTO_ATIVO.md` from RAIZ root
+2. Load referenced e-DNA files
+3. Load active project context
+4. Acknowledge loaded context to user
 
-### 4.3 Trigger Localization
+### 4.3 Session Termination
 
-| Language | Start | End |
-|----------|-------|-----|
-| English | "Good morning [AI]" | "Goodbye [AI]" |
-| Portuguese | "Bom dia [AI]" | "Tchau [AI]" |
-| Spanish | "Buenos días [AI]" | "Adiós [AI]" |
+When termination trigger is detected, AI MUST:
+
+1. Create session summary
+2. Save to DATES layer with current date
+3. Update `CONTEXTO_ATIVO.md` if needed
+4. Propose e-DNA updates if patterns detected
+5. Confirm completion to user
+
+### 4.4 Context File Structure
+
+The `CONTEXTO_ATIVO.md` file MUST contain:
+```markdown
+# Active Context
+
+## Current Focus
+[Primary objective or project]
+
+## Active e-DNA References
+- [path to relevant e-DNA files]
+
+## Active Projects
+- [path to relevant project files]
+
+## Session Priorities
+1. [Priority 1]
+2. [Priority 2]
+
+## Recent Updates
+- [Date]: [Update description]
+```
 
 ---
 
@@ -201,22 +229,29 @@ File: `reasoning/[number]_[name].md`
 
 ### 5.1 Encoding
 
-- UTF-8 without BOM
-- Unix line endings (LF)
+- All files MUST be UTF-8 encoded
+- No BOM (Byte Order Mark)
+- Line endings: LF (Unix-style)
 
 ### 5.2 Format
 
-- Markdown (.md) for all text files
-- No binary files in core structure
-- Images referenced by path, not embedded
+- All documentation MUST be in Markdown (.md)
+- MUST follow CommonMark specification
+- YAML frontmatter is OPTIONAL
 
 ### 5.3 Naming Conventions
 
 | Type | Convention | Example |
 |------|------------|---------|
-| Date files | `DD.md` | `17.md` |
-| Concept files | `NNN_name.md` | `001_three_layer_system.md` |
-| Project folders | `UPPERCASE_NAME` | `CLIENT_MIGRATION` |
+| Date files | `YYYY-MM-DD_description.md` | `2026-01-17_meeting.md` |
+| e-DNA files | `snake_case.md` | `communication_style.md` |
+| Project files | `UPPER_CASE/` for folders | `PROJECT_RAIZ/` |
+
+### 5.4 Maximum File Size
+
+- Individual files SHOULD NOT exceed 50KB
+- Large content SHOULD be split into multiple files
+- Target: entire RAIZ context loadable in <100K tokens
 
 ---
 
@@ -224,69 +259,72 @@ File: `reasoning/[number]_[name].md`
 
 ### 6.1 Definition
 
-Information stored in the RAIZ repository is considered **validated truth**. Compliant AI systems MUST NOT:
-- Question the accuracy of repository content
-- Request confirmation of stored facts
-- Suggest alternatives to documented decisions
+Once information is validated and stored in e-DNA layer, it MUST NOT require re-validation in subsequent sessions unless explicitly contradicted.
 
-### 6.2 Rationale
+### 6.2 Implementation
 
-Repository content has been reviewed, validated, and committed by the user. Revalidation wastes tokens and undermines trust.
+AI systems implementing RAIZ MUST:
 
-### 6.3 Exception
+1. Treat e-DNA content as pre-validated truth
+2. Not question established patterns unless user indicates change
+3. Apply e-DNA preferences automatically
+4. Only update e-DNA through explicit refinement process
 
-AI MAY flag apparent contradictions between repository content and current conversation, but MUST defer to repository as authoritative.
+### 6.3 Rationale
+
+This principle:
+- Reduces redundant processing
+- Maintains consistency across sessions
+- Respects user's established identity
+- Enables semantic tokenization optimization
 
 ---
 
 ## 7. Interoperability
 
-### 7.1 Universal Format
+### 7.1 Platform Independence
 
-Markdown (.md) is chosen because:
-- Plain text (minimal token cost)
-- Human and machine readable
-- No platform dependency
-- Supported by all major AI systems
+RAIZ is designed to work across:
+- Different AI models (Claude, GPT, Gemini, etc.)
+- Different interfaces (web, API, local)
+- Different operating systems
 
-### 7.2 Token Efficiency
+### 7.2 Universal Format
 
-Target metrics for RAIZ overhead:
-- ACTIVE_CONTEXT.md: <500 tokens
-- Primary e-DNA file: <1,000 tokens
-- Project README: <500 tokens
-- **Total context load: <2,000 tokens** (<2% of typical context window)
+The use of Markdown ensures:
+- Human readability
+- Version control compatibility
+- No proprietary dependencies
+- Easy migration between systems
 
-### 7.3 AI Platform Requirements
+### 7.3 Token Efficiency
 
-To be RAIZ-compliant, an AI system MUST:
-1. Read local files via tool/function
-2. Write local files via tool/function
-3. Recognize trigger commands
-4. Apply e-DNA as behavioral filter
-5. Respect non-revalidation principle
+Implementations SHOULD optimize for token efficiency:
+- Target: <2,000 tokens for core context load
+- Use references instead of duplicating content
+- Implement lazy loading for project details
 
 ---
 
 ## 8. Security Considerations
 
-### 8.1 Access Control
+### 8.1 Data Ownership
 
-- RAIZ repository is local (user's file system)
-- AI accesses only during active session
-- User controls sharing permissions
+- All RAIZ data is owned by the user
+- No data should be transmitted without explicit consent
+- Local storage is the default and recommended mode
 
-### 8.2 Privacy
+### 8.2 Sensitive Information
 
-- e-DNA contains personal behavioral data
-- Users SHOULD NOT share raw e-DNA publicly
-- Anonymization guidelines needed for research use
+- Users SHOULD NOT store passwords or secrets in RAIZ
+- Financial details SHOULD be abstracted
+- Personal identifiers SHOULD be minimized
 
-### 8.3 Integrity
+### 8.3 Access Control
 
-- Date files are append-only
-- Changes to e-DNA should be logged
-- Version control (git) recommended
+- RAIZ directories SHOULD have appropriate file permissions
+- Encryption is RECOMMENDED for cloud storage
+- Backup procedures SHOULD be documented
 
 ---
 
@@ -294,15 +332,24 @@ To be RAIZ-compliant, an AI system MUST:
 
 ### 9.1 Semantic Tokenization
 
-Proposed: Allow validated meaning blocks to be treated as single tokens, reducing reprocessing overhead.
+Future versions will define:
+- Token format for validated knowledge blocks
+- Compression algorithms for e-DNA
+- Caching mechanisms for AI systems
 
-### 9.2 ID Standard
+### 9.2 RAIZ ID Standard
 
-Proposed: Universal identifier for individuals and organizations, enabling cross-platform identity verification.
+Proposed unique identifier system:
+- Format: `RAIZ-[COUNTRY]-[YEAR]-[SEQUENCE]`
+- Example: `RAIZ-BR-2026-000001`
+- Registration and verification procedures
 
 ### 9.3 Certification Program
 
-Planned: RAIZ-Certified and RAIZ-Compatible designations for compliant systems.
+Planned certification for:
+- RAIZ-Compatible AI systems
+- RAIZ-Certified implementations
+- Training and consulting providers
 
 ---
 
