@@ -16,7 +16,7 @@
 - Business model conceptualization
 
 **Background:**
-- CEO/Founder, Grupo Madvei (Brazil)
+- CEO/Founder (Brazil)
 - Experience in organizational systems and digital transformation
 - Focus on knowledge preservation and succession in family businesses
 
