@@ -322,16 +322,12 @@ Planned: RAIZ-Certified and RAIZ-Compatible designations for compliant systems.
 
 ---
 
-## 12. Authors
+## 12. Author
 
 **Victor Iensue**
 - Role: Creator, Conceptual Architecture
-- Contact: victor@madvei.com.br
-
-**Gustavo Iensue**
-- Role: Technical Collaboration
+- Contact: victor.iensue@yahoo.com
 
 ---
 
 *End of Specification*
-
