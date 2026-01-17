@@ -20,14 +20,6 @@ The licensor cannot revoke these freedoms as long as you follow the license term
 
 ---
 
-### Notices:
-
-You do not have to comply with the license for elements of the material in the public domain or where your use is permitted by an applicable exception or limitation.
-
-No warranties are given. The license may not give you all of the permissions necessary for your intended use. For example, other rights such as publicity, privacy, or moral rights may limit how you use the material.
-
----
-
 ### Full Legal Text
 
 The full legal code is available at:
@@ -38,19 +30,17 @@ https://creativecommons.org/licenses/by/4.0/legalcode
 ## Attribution Requirements for RAIZ Protocol
 
 When using, adapting, or building upon RAIZ Protocol, please include the following attribution:
-
 ```
-Based on RAIZ Protocol by Victor Iensue and Gustavo Iensue (2026).
-https://github.com/[repository]
+Based on RAIZ Protocol by Victor Iensue (2026).
+https://github.com/victoriensue/RAIZ
 Licensed under CC BY 4.0
 ```
 
 For academic citations:
-
 ```
-Iensue, V., & Iensue, G. (2026). RAIZ: Cognitive Architecture for 
+Iensue, V. (2026). RAIZ: Cognitive Architecture for 
 Human-AI Knowledge Preservation. Version 1.0.
-https://github.com/[repository]
+https://github.com/victoriensue/RAIZ
 ```
 
 ---
@@ -65,5 +55,4 @@ The Creative Commons license applies to the protocol specification and documenta
 
 *This license applies to all files in this repository unless otherwise noted.*
 
-**Copyright © 2026 Victor Iensue and Gustavo Iensue**
-
+**Copyright © 2026 Victor Iensue**
