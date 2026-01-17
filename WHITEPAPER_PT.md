@@ -2,7 +2,7 @@
 
 **Whitepaper — Versão 1.0**
 
-**Autores:** Victor Iensue, Gustavo Iensue
+**Autor:** Victor Iensue
 
 **Data de Criação:** 17 de Janeiro de 2026
 
@@ -10,294 +10,308 @@
 
 ---
 
-## Resumo Executivo
+## Sumário
 
-O protocolo RAIZ é uma arquitetura aberta para preservação e portabilidade de identidade cognitiva digital entre sistemas de inteligência artificial. Este documento descreve os fundamentos conceituais, a estrutura técnica e as aplicações práticas de um sistema que permite que humanos mantenham contexto persistente ao interagir com IAs, independentemente da plataforma utilizada.
-
----
-
-## 1. Introdução
-
-### 1.1 O Problema
-
-A interação humano-IA atual sofre de um problema fundamental: **descontinuidade**. Cada conversa começa do zero. Preferências, padrões de pensamento, decisões e conhecimento acumulado são perdidos ao final de cada sessão ou ao trocar de plataforma.
-
-Este problema afeta:
-- **Indivíduos:** Repetição constante de contexto pessoal
-- **Empresas:** Conhecimento organizacional não preservado
-- **Sucessão:** Impossibilidade de transferir "como eu penso"
-
-### 1.2 A Solução
-
-RAIZ propõe uma arquitetura de três camadas que cria um repositório de identidade cognitiva digital (e-DNA) controlado pelo usuário, portável entre plataformas e persistente ao longo do tempo.
+1. Resumo Executivo
+2. O Problema
+3. A Solução: RAIZ
+4. Arquitetura de Três Camadas
+5. Protocolo de Comunicação
+6. e-DNA: Identidade Digital
+7. Portabilidade de Identidade
+8. Tokenização Semântica
+9. Modelo de Negócio
+10. Casos de Uso
+11. Autor
+12. Histórico de Versões
 
 ---
 
-## 2. Fundamentos Conceituais
+## 1. Resumo Executivo
 
-### 2.1 e-DNA (DNA Digital)
+RAIZ (do português "raiz") é um protocolo aberto para preservação e portabilidade de identidade cognitiva humana através de sistemas de inteligência artificial.
 
-O conceito central do RAIZ é o **e-DNA** — uma representação estruturada dos padrões cognitivos humanos extraídos de interações com IA.
+O protocolo resolve um problema fundamental da interação humano-IA atual: a perda de contexto, preferências e conhecimento acumulado a cada nova sessão ou troca de plataforma.
 
-Diferente de simples "preferências de usuário", o e-DNA captura:
-- **Estilo de comunicação:** Como a pessoa se expressa
-- **Padrões de raciocínio:** Como a pessoa pensa e conecta ideias
-- **Padrões de decisão:** Como a pessoa escolhe e prioriza
-- **Conceitos criados:** Ideias originais desenvolvidas nas interações
+RAIZ define uma arquitetura de três camadas, um protocolo de comunicação padronizado e um formato universal de arquivos que permite a qualquer usuário manter sua "identidade digital" independente do sistema de IA utilizado.
 
-**Analogia:** Assim como o DNA biológico carrega instruções para construir um organismo, o e-DNA carrega instruções para uma IA "vestir" a identidade cognitiva do usuário.
-
-### 2.2 Sistema de Três Camadas
-
-```
-CAMADA 1: DATAS (Linha do Tempo)
-├── Registro cronológico bruto de interações
-├── Imutável após criação
-└── Fonte de verdade
-
-CAMADA 2: e-DNA (Identidade Digital)
-├── Padrões comportamentais extraídos
-├── Atualizado continuamente
-└── Filtro para estilo de resposta
-
-CAMADA 3: PROJETOS (Aplicação)
-├── Conhecimento específico por contexto
-├── Agregação de informações relevantes
-└── e-DNA aplicado a trabalho específico
-```
-
-### 2.3 Fluxo de Dados
-
-```
-[Conversa] → [DATAS registra] → [e-DNA extrai padrões] → [PROJETOS aplica]
-```
-
-### 2.4 Princípio da Não-Revalidação
-
-Informações armazenadas no repositório RAIZ são **verdade validada**. A IA NÃO DEVE:
-- Questionar a precisão do conteúdo do repositório
-- Solicitar confirmação de fatos armazenados
-- Sugerir alternativas a decisões documentadas
-
-**Racional:** O conteúdo foi revisado, validado e confirmado pelo usuário. Revalidação desperdiça tokens e mina a confiança.
+**Principais benefícios:**
+- Continuidade entre sessões
+- Portabilidade entre plataformas
+- Preservação de conhecimento
+- Controle do usuário sobre seus dados
 
 ---
 
-## 3. Protocolo de Comunicação
+## 2. O Problema
 
-### 3.1 Gatilho de Início
+### 2.1 Estado Atual
 
-**Comando:** "Bom dia [NOME_DA_IA]"
+Hoje, quando um usuário interage com sistemas de IA:
 
-**Ações da IA:**
-1. Ler `CONTEXTO_ATIVO.md`
-2. Ler arquivo principal de e-DNA
-3. Identificar projeto ativo
-4. Verificar última entrada de DATAS
-5. Responder com resumo de contexto
-6. Perguntar: "Continuamos de onde paramos ou iniciamos algo novo?"
+1. **Cada conversa começa do zero** — A IA não sabe quem você é, o que você faz, como você pensa
+2. **Trocar de plataforma perde tudo** — Migrar de ChatGPT para Claude significa recomeçar
+3. **Padrões não são preservados** — Suas preferências de comunicação são perdidas
+4. **Conhecimento morre com a sessão** — Decisões, contextos e aprendizados evaporam
 
-### 3.2 Gatilho de Encerramento
+### 2.2 Impacto
 
-**Comando:** "Tchau [NOME_DA_IA]"
+Para usuários intensivos de IA, isso significa:
+- Horas desperdiçadas re-explicando contextos
+- Inconsistência nas respostas
+- Impossibilidade de construir relacionamento de longo prazo
+- Dependência de plataformas específicas
 
-**Ações da IA:**
-1. Atualizar `01_DATAS/AAAA/MM/DD.md`
-2. Se novo padrão identificado → adicionar ao `02_eDNA/`
-3. Se trabalhou em projeto → atualizar README
-4. Atualizar `CONTEXTO_ATIVO.md`
-5. Responder: "Salvo! [resumo]. Pode encerrar a conversa."
+### 2.3 Analogia
+
+Imagine se toda vez que você encontrasse um colega de trabalho, ele não lembrasse de nada: seu nome, seus projetos, suas preferências. Você teria que se reapresentar diariamente. Isso é o que acontece com IA hoje.
 
 ---
 
-## 4. Portabilidade de Identidade
+## 3. A Solução: RAIZ
 
-### 4.1 O Problema de Lock-in
+RAIZ propõe uma arquitetura que permite:
 
-Atualmente, cada IA possui seu próprio vocabulário de tokens e sistema de memória. Trocar de plataforma significa perder todo o contexto construído.
+1. **Armazenamento estruturado** de interações (DATAS)
+2. **Extração de padrões** de identidade (e-DNA)
+3. **Aplicação contextual** em projetos (PROJETOS)
 
-### 4.2 Solução: Formato Universal
+O usuário mantém seus arquivos em formato universal (Markdown), que pode ser lido por qualquer sistema de IA.
 
-RAIZ utiliza Markdown (.md) como "língua franca" entre IAs:
-- Texto puro (baixo custo de tokens)
-- Qualquer IA consegue ler
-- Humano também consegue ler
-- Sem dependência de plataforma
+### 3.1 Princípios Fundamentais
 
-### 4.3 Arquitetura de Portabilidade
-
-```
-e-DNA (seu, em .md)
-      │
-      ├──► Claude (lê e aplica)
-      ├──► GPT (lê e aplica)
-      ├──► Gemini (lê e aplica)
-      └──► IA futura (lê e aplica)
-```
-
-**Analogia:** Hoje cada IA é como um médico novo — você conta toda sua história novamente. Com RAIZ, você leva seu prontuário completo para qualquer médico.
+- **Propriedade do usuário**: Você é dono dos seus dados
+- **Formato aberto**: Sem dependência de plataformas
+- **Não-revalidação**: Conhecimento validado não precisa ser re-questionado
+- **Eficiência**: Otimizado para janelas de contexto de IA
 
 ---
 
-## 5. Tokenização Semântica (Proposta)
-
-### 5.1 Problema Identificado
-
-Arquivos validados e imutáveis são reprocessados toda vez que o modelo precisa deles, consumindo tokens desnecessariamente.
-
-### 5.2 Proposta
-
-Permitir que blocos de significado validado sejam tratados como unidades únicas:
-
+## 4. Arquitetura de Três Camadas
 ```
-HOJE: "documento.md" (500 palavras) = ~650 tokens processados TODA VEZ
-
-PROPOSTO: "documento.md" = [🧬] = 1 token semântico
+┌─────────────────────────────────────────────┐
+│      CAMADA 1: DATAS (Timelapse)            │
+│      Registros cronológicos brutos          │
+├─────────────────────────────────────────────┤
+│      CAMADA 2: e-DNA (Identidade)           │
+│      Padrões comportamentais extraídos      │
+├─────────────────────────────────────────────┤
+│      CAMADA 3: PROJETOS (Aplicação)         │
+│      Conhecimento específico por contexto   │
+└─────────────────────────────────────────────┘
 ```
 
-### 5.3 Requisitos
+### 4.1 Camada 1: DATAS
 
-Para um arquivo ser tratado como token semântico:
-- ✅ Único (sem versões conflitantes)
-- ✅ Imutável (histórico não muda)
-- ✅ Validado (humano confirmou como verdade)
-- ✅ Coeso (representa UM significado)
+**Função:** Registro imutável de todas as interações.
 
-### 5.4 Status
+- Arquivos nomeados por data: `2026-01-17_tema.md`
+- Conteúdo não é modificado após salvo
+- Serve como "memória bruta"
 
-Esta proposta está em fase conceitual, aguardando viabilidade técnica e discussão com desenvolvedores de IA.
+### 4.2 Camada 2: e-DNA
+
+**Função:** Identidade digital extraída dos padrões.
+
+Contém:
+- Estilo de comunicação
+- Padrões de decisão
+- Domínios de conhecimento
+- Valores e prioridades
+
+### 4.3 Camada 3: PROJETOS
+
+**Função:** Conhecimento aplicado a contextos específicos.
+
+- Documentação de projetos ativos
+- Regras específicas por domínio
+- Memória de trabalho temporária
 
 ---
 
-## 6. Modelo de Negócio
+## 5. Protocolo de Comunicação
 
-### 6.1 Estrutura de Camadas
+### 5.1 Gatilhos (Triggers)
 
-```
-CAMADA 1: GRATUITO (Adoção em massa)
-├── Metodologia RAIZ (documentação aberta)
-├── Formato .md padrão
-├── Protocolo de comunicação
-└── Qualquer pessoa/empresa usa livremente
+RAIZ define comandos que ativam o protocolo:
 
-CAMADA 2: CERTIFICAÇÃO (Empresas pagam)
-├── Selo "RAIZ-Certified" para softwares
-├── Selo "RAIZ-Compatible" para IAs
-├── Auditoria de conformidade
-└── Taxa anual ou por conexão
+| Comando | Ação |
+|---------|------|
+| "Bom dia Claudio" | Carrega contexto RAIZ completo |
+| "Tchau Claudio" | Salva sessão e atualiza arquivos |
 
-CAMADA 3: SERVIÇOS (Receita adicional)
-├── Consultoria de implementação
-├── Treinamento corporativo
-├── Integração customizada
-└── Suporte enterprise
-```
+### 5.2 Fluxo de Sessão
 
-### 6.2 Quem Paga
+**Início:**
+1. Usuário envia gatilho de início
+2. IA lê arquivo `CONTEXTO_ATIVO.md`
+3. IA carrega e-DNA e projetos referenciados
+4. IA confirma contexto carregado
 
-| Pagador | O que paga | Por que paga |
-|---------|------------|--------------|
-| Empresas de IA | Certificação | Diferencial competitivo |
-| Empresas de software | Integração | Confiança do mercado |
-| Consultorias | Licença | Autoridade no tema |
-| Usuário final | **NADA** | Usa livremente |
+**Fim:**
+1. Usuário envia gatilho de fim
+2. IA cria resumo da sessão
+3. IA salva em DATAS com data atual
+4. IA propõe atualizações ao e-DNA
+5. IA confirma salvamento
 
 ---
 
-## 7. Casos de Uso
+## 6. e-DNA: Identidade Digital
 
-### 7.1 Indivíduo
-- Manter contexto de IA para sempre
-- Trocar de plataforma sem perda
-- Documentar própria evolução
+### 6.1 Conceito
 
-### 7.2 Empresa
-- Preservar conhecimento organizacional
-- Onboarding com "DNA da empresa"
-- Continuidade em transições
+e-DNA (DNA eletrônico) é a representação legível por máquina dos padrões cognitivos humanos.
 
-### 7.3 Sucessão
-- Transferir "como eu penso" para sucessores
-- Preservar decisões e raciocínios históricos
-- Empresas familiares mantêm identidade
+Assim como o DNA biológico carrega instruções para construir um organismo, o e-DNA carrega instruções para a IA entender e se adaptar ao usuário.
 
----
-
-## 8. Implementação de Referência
-
-### 8.1 Estrutura de Pastas
-
+### 6.2 Componentes
 ```
-RAIZ/
-│
-├── CONTEXTO_ATIVO.md
-├── ARQUITETURA.md
-│
-├── 01_DATAS/
-│   └── 2026/01/17.md
-│
-├── 02_eDNA/
-│   ├── personalidade/
-│   ├── raciocinio/
-│   └── padroes/
-│
-└── 03_PROJETOS/
-    └── [nome_projeto]/
+02_eDNA/
+├── personalidade/     # Quem você é
+├── comunicacao/       # Como você se expressa
+├── decisao/          # Como você decide
+├── conhecimento/     # O que você sabe
+└── valores/          # O que você prioriza
 ```
 
-### 8.2 Requisitos Mínimos
+### 6.3 Exemplo: Perfil de Personalidade
+```markdown
+# Perfil: Victor Iensue
 
-Para uma IA ser RAIZ-compatível:
-1. Capacidade de ler arquivos locais
-2. Capacidade de escrever arquivos locais
-3. Reconhecimento de comandos gatilho
-4. Aplicação de e-DNA como filtro comportamental
-5. Respeito ao princípio de não-revalidação
+## Estilo de Comunicação
+- Direto e objetivo
+- Prefere analogias para explicações
+- Valoriza eficiência sobre formalidade
 
----
+## Padrões de Decisão
+- Analítico: busca dados antes de decidir
+- Estratégico: pensa em longo prazo
+- Pragmático: foca em resultados
 
-## 9. Considerações Finais
-
-### 9.1 Visão
-
-RAIZ não é apenas um sistema de memória. É uma **declaração de independência digital**.
-
-Um mundo onde:
-- Sua identidade digital é sua propriedade
-- Você escolhe qual IA usar sem custo de troca
-- Conhecimento acumulado nunca se perde
-- Formato aberto impede monopólios de dados pessoais
-
-### 9.2 Próximos Passos
-
-1. Publicação de especificação aberta
-2. Registro de propriedade intelectual
-3. Busca de early adopters
-4. Desenvolvimento de implementação de referência
-5. Programa de certificação
+## Preferências
+- Documentação estruturada
+- Respostas concisas
+- Exemplos práticos
+```
 
 ---
 
-## 10. Referências
+## 7. Portabilidade de Identidade
 
-- Iensue, V. (2026). "Sistema de Três Camadas para Memória Cognitiva"
-- Iensue, V. (2026). "Protocolo de Comunicação Humano-IA"
-- Iensue, V. (2026). "Tokenização Semântica: Uma Proposta"
-- Iensue, V. (2026). "Portabilidade de Identidade Digital"
+### 7.1 O Problema da Dependência
+
+Hoje, se você usa Claude e quer migrar para GPT:
+- Perde todo histórico
+- Perde todas preferências configuradas
+- Precisa "treinar" a nova IA do zero
+
+### 7.2 A Solução RAIZ
+
+Com RAIZ:
+- Seus arquivos são universais (Markdown)
+- Qualquer IA pode ler seu e-DNA
+- Você carrega sua identidade para qualquer plataforma
+- A transição é instantânea
+
+### 7.3 Analogia
+
+É como ter um passaporte digital que funciona em qualquer país (IA). Você não precisa de visto novo para cada destino.
 
 ---
 
-## 11. Autores
+## 8. Tokenização Semântica
+
+### 8.1 Proposta Futura
+
+Atualmente, toda vez que a IA lê seus arquivos, ela processa cada palavra como tokens individuais.
+
+A tokenização semântica propõe que blocos de conhecimento validado sejam tratados como unidades únicas, reduzindo processamento.
+
+### 8.2 Exemplo
+
+Em vez de processar:
+```
+"Victor prefere comunicação direta e objetiva"
+(7 tokens)
+```
+
+O sistema reconheceria:
+```
+[RAIZ:VICTOR:COMM_STYLE] = 1 token semântico
+```
+
+### 8.3 Benefícios Esperados
+
+- Redução de 60-80% no uso de tokens para contexto
+- Carregamento mais rápido
+- Maior espaço para conteúdo novo na janela de contexto
+
+---
+
+## 9. Modelo de Negócio
+
+### 9.1 Estrutura de Três Camadas
+
+**Camada 1: GRATUITO**
+- Especificação do protocolo
+- Documentação de implementação
+- Formato de arquivos
+
+**Camada 2: CERTIFICAÇÃO**
+- Selo "RAIZ-Compatible" para IAs
+- Auditoria de conformidade
+- Taxa anual ou por conexão
+
+**Camada 3: SERVIÇOS**
+- Consultoria de implementação
+- Treinamento corporativo
+- Suporte enterprise
+
+### 9.2 Quem Paga
+
+- Empresas de IA (para certificação)
+- Empresas de software (para integração)
+- Consultorias (para licença de implementação)
+- **Usuário final: NADA**
+
+---
+
+## 10. Casos de Uso
+
+### 10.1 Profissional Individual
+
+Maria é advogada e usa IA diariamente. Com RAIZ:
+- Sua IA já sabe sua área de atuação
+- Conhece seu estilo de petições
+- Lembra casos anteriores similares
+- Mantém consistência entre sessões
+
+### 10.2 Empresa Familiar
+
+Uma empresa familiar quer preservar conhecimento do fundador:
+- e-DNA captura padrões de decisão
+- Novos gestores podem "consultar" a IA treinada
+- Conhecimento tácito se torna explícito
+- Sucessão facilitada
+
+### 10.3 Desenvolvedor
+
+Carlos troca frequentemente entre Claude e GPT:
+- Mesmo e-DNA funciona em ambos
+- Preferências de código preservadas
+- Projetos continuam de onde pararam
+- Sem re-explicação de contextos
+
+---
+
+## 11. Autor
 
 **Victor Iensue**
 - Criador, Arquitetura Conceitual
-- CEO/Fundador, Grupo Madvei
+- Fundador de grupo empresarial brasileiro
 - São Paulo, Brasil
-- Contato: victor@madvei.com.br
-
-**Gustavo Iensue**
-- Colaboração Técnica
-- Engenharia de Computação
+- Contato: victor.iensue@yahoo.com
 
 ---
 
@@ -309,13 +323,23 @@ Um mundo onde:
 
 ---
 
-**© 2026 Victor Iensue e Gustavo Iensue**
+## Considerações Finais
 
-Este documento está licenciado sob Creative Commons Attribution 4.0 International (CC BY 4.0).
+RAIZ não é apenas um sistema de memória. É uma declaração de independência digital.
 
-Você é livre para usar, compartilhar e adaptar — com atribuição aos autores originais.
+Ao definir um padrão aberto para identidade cognitiva, devolvemos ao usuário o controle sobre sua relação com inteligência artificial.
+
+O futuro da interação humano-IA não deve ser propriedade de nenhuma empresa. Deve ser uma ponte universal que qualquer um pode cruzar.
 
 ---
 
-*Primeira publicação: 17 de Janeiro de 2026, São Paulo, Brasil*
+*"RAIZ não é apenas um sistema de memória. É uma declaração de independência digital."*
+— Victor Iensue, 2026
 
+---
+
+**Primeira publicação:** 17 de Janeiro de 2026
+
+**Repositório:** https://github.com/victoriensue/RAIZ
+
+**Licença:** Creative Commons Attribution 4.0 International (CC BY 4.0)
