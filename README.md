@@ -31,7 +31,6 @@ Today, when you interact with AI:
 ## The Solution
 
 RAIZ defines a three-layer architecture:
-
 ```
 ┌─────────────────────────────────────┐
 │  LAYER 1: DATES (Timelapse)         │
@@ -68,7 +67,7 @@ Your e-DNA travels with you across AI platforms using universal format (.md).
 
 - [Full Specification](SPECIFICATION.md)
 - [License (CC BY 4.0)](LICENSE.md)
-- [Authors & Attribution](AUTHORS.md)
+- [Author & Attribution](AUTHORS.md)
 - [Whitepaper (Portuguese)](WHITEPAPER_PT.md)
 
 ---
@@ -88,14 +87,13 @@ See [SPECIFICATION.md](SPECIFICATION.md) for complete implementation guide.
 
 RAIZ Protocol is released under [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE.md).
 
-You are free to use, modify, and commercialize — with attribution to the original authors.
+You are free to use, modify, and commercialize — with attribution to the original author.
 
 ---
 
-## Authors
+## Author
 
 **Victor Iensue** — Creator, Conceptual Architecture
-**Gustavo Iensue** — Technical Collaboration
 
 *São Paulo, Brazil — January 2026*
 
@@ -104,10 +102,9 @@ You are free to use, modify, and commercialize — with attribution to the origi
 ## Contact
 
 - GitHub: [this repository]
-- Email: victor@madvei.com.br
+- Email: victor.iensue@yahoo.com
 
 ---
 
 > "RAIZ is not just a memory system. It's a declaration of digital independence."
 > — Victor Iensue, 2026
-
